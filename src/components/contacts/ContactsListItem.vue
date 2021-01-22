@@ -1,5 +1,7 @@
 <template>
-  <li class="contacts-list__item">{{ contact.name }} <b>{{ contact.nickname }}</b></li>
+  <li class="contacts-list__item">
+    <p>{{ contact.name }} <b>{{ contact.nickname }}</b></p>
+  </li>
 </template>
 
 <script>
@@ -18,13 +20,19 @@ export default {
 
 <style lang="scss" scoped>
 .contacts-list__item {
-  padding: 5px 10px;
-  margin-bottom: 5px;
-  font-family: Tahoma, Verdana, sans-serif;
-  border: 1px #999999 solid;
-  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  flex-basis: 80px;
+  padding: 5px 20px;
+  border-width: 0;
+  border-color: #999999;
+  border-style: solid;
   background-color: #e5e5e5;
   transition: background-color .3s ease;
+
+  &:not(:last-child) {
+    border-bottom-width: 1px;
+  }
   
   &:hover {
     background-color: #bebebe;

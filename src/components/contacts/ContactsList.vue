@@ -38,11 +38,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.contacts-list {
-  width: 30%;
-}
-
 .contacts-list ul {
+  display: flex;
+  flex-direction: column;
   list-style: none;
   padding: 0;
   margin: 0;
