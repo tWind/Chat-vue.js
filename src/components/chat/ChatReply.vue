@@ -1,12 +1,19 @@
 <template>
   <div class="chat-reply">
-    reply
+    <p>{{ message.text }}</p>
   </div>
 </template>
 
 <script>
   export default {
     name: 'ChatReply',
+    props: {
+      message: {
+        default() {
+          return {};
+        }
+      }
+    }
   }
 </script>
 
@@ -14,7 +21,7 @@
 .chat-reply {
   background-color: #e5e5e5;
   border-radius: 3px;
-  padding: .5rem 2rem;
-  margin: .5rem 0;
+  padding: .25rem 2rem;
+  margin: .25rem 0;
 }
 </style>

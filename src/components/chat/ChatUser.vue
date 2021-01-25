@@ -1,17 +1,24 @@
 <template>
   <div class="chat-user">
-    <div class="chat-user__avatar"></div>
+    <div class="chat-user__avatar"><span>{{ userAvatar }}</span></div>
     <div class="chat-user__info">
-      <p>Имя</p>
-      <p>Фамилия</p>
+      {{ currentUser.name }}
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'ChatUser',
+import { mapGetters } from 'vuex';
+
+export default {
+  name: 'ChatUser',
+  computed: {
+    ...mapGetters('users', ['currentUser']),
+    userAvatar() {
+      return this.currentUser.name.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'');
+    },
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -23,8 +30,15 @@
 .chat-user__avatar {
   width: 50px; height: 50px;
   border-radius: 50%;
+  display: flex;
+  align-items: center; justify-content: center;
   background-color: #e5e5e5;
   margin-right: 1rem;
+
+  span {
+    font-weight: bold;
+    font-size: 22px;
+  }
 }
 
 .chat-user__info {

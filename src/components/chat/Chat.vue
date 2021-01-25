@@ -1,18 +1,25 @@
 <template>
   <div class="chat">
-    <div class="chat__header">
-      <chat-user />
+    <div  v-if="!currentUser" class="chat__empty">
+      <p>Выберите собеседника</p>
     </div>
-    <div class="chat__message">
-      <chat-message />
-    </div>
-    <div class="chat__conversation">
-      <chat-conversation />
+    <div v-else class="chat__window">
+      <div class="chat__header">
+        <chat-user />
+      </div>
+      <div class="chat__message">
+        <chat-message />
+      </div>
+      <div class="chat__conversation">
+        <chat-conversation />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import ChatUser from './ChatUser';
 import ChatMessage from './ChatMessage';
 import ChatConversation from './ChatConversation';
@@ -24,6 +31,9 @@ export default {
     ChatMessage,
     ChatConversation,
   },
+  computed: {
+    ...mapGetters('users', ['currentUser']),
+  }
 }
 </script>
 

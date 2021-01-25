@@ -1,10 +1,12 @@
 <template>
-  <li class="contacts-list__item">
+  <li class="contacts-list__item" @click="setCurrentUser(contact)">
     <p>{{ contact.name }}</p>
   </li>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'ContactsListItem',
   props: {
@@ -15,6 +17,9 @@ export default {
       },
     },
   },
+  methods: {
+    ...mapMutations('users', ['setCurrentUser']),
+  }
 }
 </script>
 
