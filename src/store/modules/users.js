@@ -4,10 +4,15 @@ export default {
   namespaced: true,
   state: {
     users: [],
+    currentUser: {},
   },
   mutations: {
     setUsers(state, payload) {
       state.users = payload;
+    },
+    setCurrentUser(state, user) {
+      state.currentUser = user;
+      console.log(user);
     },
   },
   actions: {
@@ -17,8 +22,14 @@ export default {
     },
   },
   getters: {
-    getUsers (state) {
+    getUsers(state) {
       return state.users;
     },
+    currentUser(state) {
+      if(Object.keys(state.currentUser).length === 0 && state.currentUser.constructor === Object) {
+        return false;
+      }
+      return state.currentUser;
+    }
   },
 };

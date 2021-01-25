@@ -1,7 +1,9 @@
 <template>
   <div class="chat-message">
     <div class="chat-message__text">
-      <input ref="textMessage" name="message" id="message" placeholder="Введите сообщение" />
+      <div class="chat-message__input"
+           contenteditable="true" ref="textMessage"
+           @keyup.enter.exact="sendMessage"></div>
     </div>
     <div class="chat-message__submit">
       <base-button @click="sendMessage()">Отправить</base-button>
@@ -10,6 +12,7 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex';
 import BaseButton from '@/components/BaseButton';
 
 export default {
@@ -17,9 +20,23 @@ export default {
   components: {
     BaseButton,
   },
+  computed: {
+    ...mapGetters('users', ['currentUser']),
+  },
   methods: {
+    ...mapMutations('messages', ['newMessage']),
     sendMessage() {
-      console.log('Message sent!');
+      const text = this.$refs.textMessage.textContent;
+      this.$refs.textMessage.textContent = '';
+
+      if(text !== '') {
+        let message = {
+          text: text,
+          userId: this.currentUser.id,
+        };
+
+        this.newMessage(message);
+      }
     },
   },
 }
@@ -28,13 +45,13 @@ export default {
 <style lang="scss" scoped>
 .chat-message__text {
   margin-bottom: .5rem;
-  input {
-    width: 100%;
-    padding: 1rem;
-    outline: 0;
-    border: 1px #969696 solid;
-    border-radius: 3px;
-  }
+}
+
+.chat-message__input {
+  padding: 1rem;
+  outline: 0;
+  border: 1px #969696 solid;
+  border-radius: 3px;
 }
 
 .chat-message__submit {
