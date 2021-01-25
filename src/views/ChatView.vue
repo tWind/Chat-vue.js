@@ -1,7 +1,7 @@
 <template>
   <base-layout>
     <div class="contacts-list__container">
-      <contacts-list />
+      <contacts-list :contacts="getUsers" />
     </div>
 
     <div class="chat__container">
@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import BaseLayout from '@/layouts/BaseLayout';
 import ContactsList from '@/components/contacts/ContactsList';
 import Chat from '@/components/chat/Chat';
@@ -22,6 +24,12 @@ export default {
     ContactsList,
     Chat,
   },
+  computed: {
+    ...mapGetters('users', ['getUsers']),
+  },
+  mounted() {
+    // debugger; // eslint-disable-line
+  }
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <li class="contacts-list__item">
-    <p>{{ contact.name }} <b>{{ contact.nickname }}</b></p>
+    <p>{{ contact.name }}</p>
   </li>
 </template>
 

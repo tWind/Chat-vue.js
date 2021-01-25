@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import store from '@/store';
 
-//import api from '@/common/api';
 import ChatView from '@/views/ChatView';
 
 Vue.use(Router);
@@ -15,7 +14,7 @@ const router = new Router({
       name: 'chat',
       component: ChatView,
       beforeEnter: (to, from, next) => {
-        store.dispatch('user/loadUsers');
+        store.dispatch('users/loadUsers');
         next();
       },
     },

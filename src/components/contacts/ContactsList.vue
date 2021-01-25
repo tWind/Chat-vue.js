@@ -1,34 +1,19 @@
 <template>
   <div class="contacts-list">
     <ul>
-      <list-item v-for="user in users" :key="user.index" :contact="user" />
+      <list-item v-for="contact in contacts" :key="contact.index" :contact="contact" />
     </ul>
   </div>
 </template>
 
 <script>
-const users = [
-  {
-    name: 'Шпиц',
-    nickname: "Хитрый",
-  },
-  {
-    name: 'Кира',
-    nickname: "Банан",
-  },
-  {
-    name: 'Даша',
-    nickname: "Вредина",
-  }
-];
-
 import ListItem from './ContactsListItem';
 
 export default {
   name: 'contacts',
-  data() {
-    return {
-      users: users,
+  props: {
+    contacts: {
+      default: () => [],
     }
   },
   components: {

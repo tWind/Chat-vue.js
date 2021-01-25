@@ -12,8 +12,13 @@ export default {
   },
   actions: {
     async loadUsers(store) {
-      const { data: users } = await api.get('https://jsonplaceholder.typicode.com/users');
+      const users = await api.get('https://jsonplaceholder.typicode.com/users');
       store.commit('setUsers', users);
+    },
+  },
+  getters: {
+    getUsers (state) {
+      return state.users;
     },
   },
 };

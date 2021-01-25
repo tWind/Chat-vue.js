@@ -1,6 +1,8 @@
 <template>
   <div class="chat-message">
-    <div class="chat-message__text"><textarea name="" id="" cols="30" rows="5"></textarea></div>
+    <div class="chat-message__text">
+      <input ref="textMessage" name="message" id="message" placeholder="Введите сообщение" />
+    </div>
     <div class="chat-message__submit">
       <base-button @click="sendMessage()">Отправить</base-button>
     </div>
@@ -24,13 +26,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.chat-message {
-  textarea {
+.chat-message__text {
+  margin-bottom: .5rem;
+  input {
     width: 100%;
-    resize: none;
-    padding: 0 1rem;
+    padding: 1rem;
     outline: 0;
     border: 1px #969696 solid;
+    border-radius: 3px;
   }
 }
 
